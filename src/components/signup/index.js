@@ -34,20 +34,25 @@ const Signup = () => {
 
   const handleSignup = async (e) => {
     e.preventDefault();
-    try {
-      const response = await axios.post("http://localhost:5000/register", {
-        first_name:firstname,
-        last_name:lastname,
-        mobile_number:phoneNumber,
-        password,
-      });
-      console.log(response)
-      successAlert();
-      navigate("/login");
-    } catch (error) {
-      console.error("Signup failed", error.response?.data || error.message);
-      alert("Signup failed: " + (error.response?.data || "Unknown error"));
+    if(password !== ReEnterPassword){
+      alert('Password Mismatch')
+    }else{
+      try {
+        const response = await axios.post("http://localhost:5000/register", {
+          first_name:firstname,
+          last_name:lastname,
+          mobile_number:phoneNumber,
+          password,
+        });
+        console.log(response)
+        successAlert();
+        navigate("/login");
+      } catch (error) {
+        console.error("Signup failed", error.response?.data || error.message);
+        alert("Signup failed: " + (error.response?.data || "Unknown error"));
+      }
     }
+    
   };
   const onClickLogin = ()=>{
     navigate("/login")

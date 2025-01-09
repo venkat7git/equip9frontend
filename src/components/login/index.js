@@ -74,7 +74,7 @@ const Login = () => {
               placeholder="Mobile Number"
               id="number"
               value={number}
-              onChange={(e) =>{ e.target.value >= 10 && setNumber(e.target.value)}}
+              onChange={(e) =>{ e.target.value.length <= 10 && setNumber(e.target.value)}}
               required
             />
         </div>
